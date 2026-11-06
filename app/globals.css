@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+:root {
+  --shade: #3B091F;
+  --shade-deep: #2C0617;
+  --shade-soft: #CDB5BE;
+  --bg-page: #0D090B;
+  --ink: #F5ECEE;
+  --muted: #8E7E84;
+  --card-bg: #160E12;
+  --footer-bg: #0E080A;
+}
+
+html {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  scroll-behavior: smooth;
+  transition: background-color 700ms cubic-bezier(0.22, 1, 0.36, 1),
+              color 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--bg-page);
+  color: var(--ink);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  /* Dark grunge tactile subtle micro-texture */
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(142, 12, 45, 0.12) 0%, transparent 60%),
+    radial-gradient(rgba(245, 236, 238, 0.03) 1px, transparent 1px);
+  background-size: 100% 100%, 32px 32px;
+}
+
+/* Dynamic shade transition helper */
+.shade-transition {
+  transition: background-color 700ms cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 700ms cubic-bezier(0.22, 1, 0.36, 1),
+              color 700ms cubic-bezier(0.22, 1, 0.36, 1),
+              fill 700ms cubic-bezier(0.22, 1, 0.36, 1),
+              stroke 700ms cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Glassmorphism for Dark Grunge */
+.glass-panel {
+  background: rgba(22, 14, 18, 0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(245, 236, 238, 0.08);
+}
+
+.glass-panel-tinted {
+  background: color-mix(in srgb, var(--shade) 35%, rgba(14, 9, 11, 0.7));
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.glass-pill {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0D090B;
+}
+::-webkit-scrollbar-thumb {
+  background: #3B2028;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--shade);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
