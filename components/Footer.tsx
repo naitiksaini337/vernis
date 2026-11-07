@@ -2,58 +2,71 @@
 
 import React from "react";
 import Link from "next/link";
+import { ArrowUp } from "lucide-react";
 import { SHADES } from "../lib/shades";
 
 export function Footer() {
+  const scrollToTop = () => {
+    if (typeof window !== "undefined") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   return (
     <footer className="relative w-full bg-[#0E080A] border-t border-white/10 text-white/70 overflow-hidden">
       {/* Background ambient radial tint */}
       <div
-        className="absolute bottom-0 inset-x-0 h-[450px] opacity-15 pointer-events-none blur-3xl shade-transition"
+        className="absolute bottom-0 inset-x-0 h-[480px] opacity-25 pointer-events-none blur-3xl shade-transition"
         style={{
           background: "radial-gradient(circle at 50% 100%, var(--shade) 0%, transparent 70%)",
         }}
       />
 
       {/* ========================================================
-          SECTION 1 (UPPER): ALL LINKS, PAGES & MAISON DIRECTORY
+          SECTION 1 (UPPER): DIRECTORY, BUTTONS & SOCIAL LINKS
+          Zero AI slop — clean navigation, actions, and socials
           ======================================================== */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 pt-20 md:pt-28 pb-16 md:pb-24">
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-12 gap-10 lg:gap-12 pb-16 border-b border-white/10">
-          {/* Col 1: Brand Ethos (4 cols) */}
-          <div className="col-span-2 lg:col-span-4 space-y-4">
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 text-sm uppercase tracking-[0.28em] font-light text-[#F5ECEE] hover:opacity-80 transition-opacity"
-            >
-              <span className="font-medium">VERNIS</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-[var(--shade)] shade-transition inline-block" />
-            </Link>
-
-            <p className="text-xs font-light text-[#8E7E84] max-w-sm leading-relaxed">
-              A single-coat luxury nail lacquer compounded for deep pigment saturation.
-              10-Free, vegan, and hand-poured in Grasse, France.
-            </p>
-
-            <div className="pt-2 text-[11px] font-mono text-[#8E7E84]/70 tracking-wider">
-              PARIS · GRASSE · EST. 2026
+      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 pt-16 md:pt-24 pb-14">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-12 gap-8 lg:gap-12 pb-14 border-b border-white/10">
+          
+          {/* Col 1: Brand & Back to Top action (4 cols) */}
+          <div className="col-span-2 lg:col-span-4 flex flex-col justify-between items-start space-y-6">
+            <div className="space-y-3">
+              <Link
+                href="/"
+                className="inline-flex items-center gap-2 text-base uppercase tracking-[0.3em] font-light text-[#F5ECEE] hover:opacity-80 transition-opacity"
+              >
+                <span className="font-semibold">VERNIS</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-[var(--shade)] shade-transition inline-block" />
+              </Link>
+              <div className="text-[11px] font-mono tracking-[0.2em] text-[#8E7E84]">
+                HAUTE COUTURE LACQUER
+              </div>
             </div>
+
+            <button
+              onClick={scrollToTop}
+              className="group inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-mono text-[#8E7E84] hover:text-[#F5ECEE] transition-colors py-2 cursor-pointer"
+            >
+              <span>Back to Top</span>
+              <ArrowUp className="w-3.5 h-3.5 transition-transform duration-300 group-hover:-translate-y-1 text-[var(--shade)]" />
+            </button>
           </div>
 
-          {/* Col 2: The Collection (3 cols) */}
+          {/* Col 2: The Shades (3 cols) */}
           <div className="col-span-1 lg:col-span-3 space-y-3">
             <span className="text-[10px] uppercase tracking-[0.25em] text-[#8E7E84] font-mono block">
-              THE SHADES
+              SHADES
             </span>
-            <ul className="space-y-2 text-xs font-light">
+            <ul className="space-y-2.5 text-xs font-light">
               {SHADES.map((shade) => (
                 <li key={shade.id}>
                   <Link
                     href={`/products/${shade.id}`}
-                    className="text-[#8E7E84] hover:text-[#F5ECEE] transition-colors flex items-center gap-2 group"
+                    className="text-[#8E7E84] hover:text-[#F5ECEE] transition-colors flex items-center gap-2.5 group"
                   >
                     <span
-                      className="w-1.5 h-1.5 rounded-full border border-black/40 group-hover:scale-125 transition-transform"
+                      className="w-2 h-2 rounded-full border border-black/50 group-hover:scale-125 transition-transform"
                       style={{ backgroundColor: shade.hex }}
                     />
                     <span>
@@ -65,24 +78,24 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Col 3: Navigation & Ritual (2 cols) */}
+          {/* Col 3: Directory (2 cols) */}
           <div className="col-span-1 lg:col-span-2 space-y-3">
             <span className="text-[10px] uppercase tracking-[0.25em] text-[#8E7E84] font-mono block">
-              MAISON
+              DIRECTORY
             </span>
-            <ul className="space-y-2 text-xs font-light">
+            <ul className="space-y-2.5 text-xs font-light">
               <li>
                 <Link
                   href="/#shades"
-                  className="text-[#8E7E84] hover:text-[#F5ECEE] transition-colors"
+                  className="text-[#8E7E84] hover:text-[#F5ECEE] transition-colors block"
                 >
-                  All Lacquers
+                  The Collection
                 </Link>
               </li>
               <li>
                 <Link
                   href="/#how-to-wear"
-                  className="text-[#8E7E84] hover:text-[#F5ECEE] transition-colors"
+                  className="text-[#8E7E84] hover:text-[#F5ECEE] transition-colors block"
                 >
                   Application Ritual
                 </Link>
@@ -90,81 +103,83 @@ export function Footer() {
               <li>
                 <Link
                   href="/#about"
-                  className="text-[#8E7E84] hover:text-[#F5ECEE] transition-colors"
+                  className="text-[#8E7E84] hover:text-[#F5ECEE] transition-colors block"
                 >
-                  Philosophy
+                  Atelier
                 </Link>
-              </li>
-              <li>
-                <span className="text-[#8E7E84]/60 cursor-default">
-                  10-Free Standard
-                </span>
-              </li>
-              <li>
-                <span className="text-[#8E7E84]/60 cursor-default">
-                  Optical Flint Glass
-                </span>
               </li>
             </ul>
           </div>
 
-          {/* Col 4: Client Services (3 cols) */}
+          {/* Col 4: Socials & Concierge (3 cols) */}
           <div className="col-span-2 lg:col-span-3 space-y-3">
             <span className="text-[10px] uppercase tracking-[0.25em] text-[#8E7E84] font-mono block">
-              CLIENT SERVICES
+              SOCIAL & CONTACT
             </span>
-            <ul className="space-y-2 text-xs font-light">
-              <li className="text-[#8E7E84]">
-                Complimentary shipping on orders over $50
-              </li>
-              <li className="text-[#8E7E84]">
-                30-day complimentary shade exchange
-              </li>
-              <li>
-                <a
-                  href="mailto:concierge@vernis.luxury"
-                  className="text-[#8E7E84] hover:text-[#F5ECEE] transition-colors"
-                >
-                  concierge@vernis.luxury
-                </a>
-              </li>
-              <li className="pt-2 flex items-center gap-4 text-[11px] text-[#8E7E84]">
-                <a
-                  href="https://instagram.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-white transition-colors"
-                >
-                  Instagram ↗
-                </a>
-                <a
-                  href="https://tiktok.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-white transition-colors"
-                >
-                  TikTok ↗
-                </a>
-              </li>
-            </ul>
+            <div className="grid grid-cols-2 gap-y-2.5 gap-x-4 text-xs font-light pt-1">
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#8E7E84] hover:text-[#F5ECEE] transition-colors flex items-center justify-between group"
+              >
+                <span>Instagram</span>
+                <span className="text-[10px] font-mono opacity-50 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">↗</span>
+              </a>
+              <a
+                href="https://tiktok.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#8E7E84] hover:text-[#F5ECEE] transition-colors flex items-center justify-between group"
+              >
+                <span>TikTok</span>
+                <span className="text-[10px] font-mono opacity-50 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">↗</span>
+              </a>
+              <a
+                href="https://pinterest.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#8E7E84] hover:text-[#F5ECEE] transition-colors flex items-center justify-between group"
+              >
+                <span>Pinterest</span>
+                <span className="text-[10px] font-mono opacity-50 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">↗</span>
+              </a>
+              <a
+                href="https://x.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#8E7E84] hover:text-[#F5ECEE] transition-colors flex items-center justify-between group"
+              >
+                <span>X (Twitter)</span>
+                <span className="text-[10px] font-mono opacity-50 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">↗</span>
+              </a>
+            </div>
+
+            <div className="pt-4 border-t border-white/5">
+              <a
+                href="mailto:concierge@vernis.luxury"
+                className="inline-block text-xs font-mono text-[#8E7E84] hover:text-[#F5ECEE] transition-colors"
+              >
+                concierge@vernis.luxury
+              </a>
+            </div>
           </div>
         </div>
       </div>
 
       {/* ========================================================
-          SECTION 2 (LOWER): BLENDED LARGE BRAND WORDMARK & BASE
-          Reveals itself as the user scrolls a bit down.
+          SECTION 2 (LOWER): BRIGHT ARCHITECTURAL WORDMARK & BASE
           ======================================================== */}
-      <div className="relative w-full pt-4 pb-12 overflow-hidden flex flex-col items-center justify-end select-none">
-        {/* Blended Large Brand Wordmark in the background */}
+      <div className="relative w-full pt-2 pb-10 overflow-hidden flex flex-col items-center justify-end select-none">
+        {/* Brightened Wordmark in the background */}
         <div className="w-full overflow-hidden text-center leading-none">
           <span
-            className="block font-light text-[18vw] tracking-[0.08em] uppercase text-transparent bg-clip-text select-none pointer-events-none transition-all duration-700"
+            className="block font-light text-[19vw] tracking-[0.06em] uppercase text-transparent bg-clip-text select-none pointer-events-none transition-all duration-700"
             style={{
               backgroundImage:
-                "linear-gradient(180deg, rgba(245, 236, 238, 0.14) 0%, rgba(245, 236, 238, 0.04) 55%, rgba(245, 236, 238, 0.01) 100%)",
+                "linear-gradient(180deg, rgba(245, 236, 238, 0.48) 0%, rgba(245, 236, 238, 0.22) 55%, rgba(245, 236, 238, 0.08) 100%)",
               fontFamily: "var(--font-sans), serif",
-              lineHeight: 0.85,
+              lineHeight: 0.82,
             }}
             aria-hidden="true"
           >
@@ -173,8 +188,8 @@ export function Footer() {
         </div>
 
         {/* Minimal Bottom Bar */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] font-light text-[#8E7E84]">
-          <div>© 2026 VERNIS MAISON DE HAUTE LACQUER. ALL RIGHTS RESERVED.</div>
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] font-light text-[#8E7E84]">
+          <div>© 2026 VERNIS. ALL RIGHTS RESERVED.</div>
 
           <div className="flex items-center gap-6">
             <span className="hover:text-white cursor-pointer transition-colors">
